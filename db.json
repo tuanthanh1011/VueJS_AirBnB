@@ -1,0 +1,340 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Ninh Bình",
+      "province": "Ninh Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 2,
+      "name": "Hạ Long",
+      "province": "Quảng Ninh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 3,
+      "name": "Hội An",
+      "province": "Quảng Nam",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 4,
+      "name": "Phong Nha",
+      "province": "Quảng Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 5,
+      "name": "Đà Nẵng",
+      "province": "Đà Nẵng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 6,
+      "name": "Nha Trang",
+      "province": "Khánh Hòa",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 7,
+      "name": "Đà Lạt",
+      "province": "Lâm Đồng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 8,
+      "name": "Sapa",
+      "province": "Lào Cai",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 9,
+      "name": "Vũng Tàu",
+      "province": "Bà Rịa - Vũng Tàu",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 10,
+      "name": "Cần Thơ",
+      "province": "Cần Thơ",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 11,
+      "name": "Hà Nội",
+      "province": "Hà Nội",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 12,
+      "name": "Hồ Chí Minh",
+      "province": "Hồ Chí Minh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 13,
+      "name": "Huế",
+      "province": "Thừa Thiên Huế",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 14,
+      "name": "Hải Phòng",
+      "province": "Hải Phòng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 15,
+      "name": "Ninh Bình",
+      "province": "Ninh Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 16,
+      "name": "Hạ Long",
+      "province": "Quảng Ninh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 17,
+      "name": "Hội An",
+      "province": "Quảng Nam",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 18,
+      "name": "Phong Nha",
+      "province": "Quảng Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 19,
+      "name": "Đà Nẵng",
+      "province": "Đà Nẵng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 20,
+      "name": "Nha Trang",
+      "province": "Khánh Hòa",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 21,
+      "name": "Đà Lạt",
+      "province": "Lâm Đồng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 22,
+      "name": "Sapa",
+      "province": "Lào Cai",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 23,
+      "name": "Vũng Tàu",
+      "province": "Bà Rịa - Vũng Tàu",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 24,
+      "name": "Cần Thơ",
+      "province": "Cần Thơ",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 25,
+      "name": "Hà Nội",
+      "province": "Hà Nội",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 26,
+      "name": "Hồ Chí Minh",
+      "province": "Hồ Chí Minh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 27,
+      "name": "Huế",
+      "province": "Thừa Thiên Huế",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 28,
+      "name": "Hải Phòng",
+      "province": "Hải Phòng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 29,
+      "name": "Ninh Bình",
+      "province": "Ninh Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 30,
+      "name": "Hạ Long",
+      "province": "Quảng Ninh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 31,
+      "name": "Hội An",
+      "province": "Quảng Nam",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 32,
+      "name": "Phong Nha",
+      "province": "Quảng Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 33,
+      "name": "Đà Nẵng",
+      "province": "Đà Nẵng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 34,
+      "name": "Nha Trang",
+      "province": "Khánh Hòa",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 35,
+      "name": "Đà Lạt",
+      "province": "Lâm Đồng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 36,
+      "name": "Sapa",
+      "province": "Lào Cai",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 37,
+      "name": "Vũng Tàu",
+      "province": "Bà Rịa - Vũng Tàu",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 38,
+      "name": "Cần Thơ",
+      "province": "Cần Thơ",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 39,
+      "name": "Hà Nội",
+      "province": "Hà Nội",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 40,
+      "name": "Hồ Chí Minh",
+      "province": "Hồ Chí Minh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 41,
+      "name": "Huế",
+      "province": "Thừa Thiên Huế",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 42,
+      "name": "Hải Phòng",
+      "province": "Hải Phòng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 43,
+      "name": "Ninh Bình",
+      "province": "Ninh Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 44,
+      "name": "Hạ Long",
+      "province": "Quảng Ninh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 45,
+      "name": "Hội An",
+      "province": "Quảng Nam",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 46,
+      "name": "Phong Nha",
+      "province": "Quảng Bình",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 47,
+      "name": "Đà Nẵng",
+      "province": "Đà Nẵng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 48,
+      "name": "Nha Trang",
+      "province": "Khánh Hòa",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 49,
+      "name": "Đà Lạt",
+      "province": "Lâm Đồng",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 50,
+      "name": "Sapa",
+      "province": "Lào Cai",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 51,
+      "name": "Vũng Tàu",
+      "province": "Bà Rịa - Vũng Tàu",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 52,
+      "name": "Cần Thơ",
+      "province": "Cần Thơ",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 53,
+      "name": "Hà Nội",
+      "province": "Hà Nội",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 54,
+      "name": "Hồ Chí Minh",
+      "province": "Hồ Chí Minh",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 55,
+      "name": "Huế",
+      "province": "Thừa Thiên Huế",
+      "country": "Việt Nam"
+    },
+    {
+      "id": 56,
+      "name": "Hải Phòng",
+      "province": "Hải Phòng",
+      "country": "Việt Nam"
+    }
+  ]
+}

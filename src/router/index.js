@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
+import BlogView from "../views/BlogView.vue";
+import RoomsView from "../views/RoomsView.vue";
 import HomeView from "../views/HomeView.vue";
+import RoomDetailView from "../views/RoomDetailView.vue";
+import ContactView from "../views/ContactView.vue";
+import SignInView from "../views/SignInView.vue";
+import SignUpView from "../views/SignUpView.vue";
+import BookingView from "../views/BookingView.vue";
 
 const routes = [
   {
@@ -8,19 +15,46 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/blog",
+    name: "blog",
+    component: BlogView,
+  },
+  {
+    path: "/rooms/:locationId",
+    name: "rooms",
+    component: RoomsView,
+  },
+  {
+    path: "/room-detail/:roomId",
+    name: "room-detail",
+    component: RoomDetailView,
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: ContactView,
+  },
+  {
+    path: "/sign-in",
+    name: "sign-in",
+    component: SignInView,
+  },
+  {
+    path: "/sign-up",
+    name: "sign-up",
+    component: SignUpView,
+  },
+  {
+    path: "/booking/:roomId",
+    name: "booking",
+    component: BookingView,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  linkActiveClass: "current",
 });
 
 export default router;
