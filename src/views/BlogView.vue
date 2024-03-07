@@ -22,6 +22,8 @@ export default {
     const store = useStore();
 
     store.dispatch("auth/loadUserLoginFromLocalStorageAction");
+
+    store.dispatch("blog/getAllBlogAction");
   },
 };
 </script>

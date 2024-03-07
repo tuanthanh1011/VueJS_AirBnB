@@ -6,7 +6,11 @@
   >
     <div class="mfp-container mfp-inline-holder">
       <div class="mfp-content">
-        <div id="sign-in-dialog" class="zoom-anim-dialog">
+        <div
+          id="sign-in-dialog"
+          class="zoom-anim-dialog"
+          style="margin-top: 100px"
+        >
           <div class="small-dialog-header">
             <h3>Sign Up</h3>
           </div>
@@ -22,14 +26,16 @@
                       >Username:
                       <i class="im im-icon-Male"></i>
                       <input
+                        required
                         type="text"
                         class="input-text"
                         name="username"
                         id="username2"
-                        value=""
                         v-model="userRegister.name"
+                        @blur="validateName"
                       />
                     </label>
+                    <span style="color: red">{{ validateForm.nameError }}</span>
                   </p>
 
                   <p class="form-row form-row-wide">
@@ -37,29 +43,39 @@
                       >Email Address:
                       <i class="im im-icon-Mail"></i>
                       <input
+                        required
                         type="text"
                         class="input-text"
                         name="email"
                         id="email2"
                         value=""
                         v-model="userRegister.email"
+                        @blur="validateEmail"
                       />
                     </label>
+                    <span style="color: red">{{
+                      validateForm.emailError
+                    }}</span>
                   </p>
 
                   <p class="form-row form-row-wide">
-                    <label for="email2"
+                    <label for="phone"
                       >Phone:
                       <i class="fa-solid fa-phone"></i>
                       <input
+                        required
                         type="text"
                         class="input-text"
                         name="phone"
                         id="phone"
                         value=""
                         v-model="userRegister.phone"
+                        @blur="validatePhoneNumber"
                       />
                     </label>
+                    <span style="color: red">{{
+                      validateForm.phoneError
+                    }}</span>
                   </p>
 
                   <p class="form-row form-row-wide">
@@ -123,13 +139,18 @@
                       >Password:
                       <i class="im im-icon-Lock-2"></i>
                       <input
+                        required
                         class="input-text"
                         type="password"
                         name="password1"
                         id="password1"
                         v-model="userRegister.password"
+                        @blur="validatePassword"
                       />
                     </label>
+                    <span style="color: red">{{
+                      validateForm.passwordError
+                    }}</span>
                   </p>
 
                   <p class="form-row form-row-wide">
@@ -137,13 +158,18 @@
                       >Repeat Password:
                       <i class="im im-icon-Lock-2"></i>
                       <input
+                        required
                         class="input-text"
                         type="password"
                         name="password2"
                         id="password2"
                         v-model="userRegister.rePassword"
+                        @blur="validateRePassword"
                       />
                     </label>
+                    <span style="color: red">{{
+                      validateForm.rePasswordError
+                    }}</span>
                   </p>
                   <p>
                     <span class="lost_password">
@@ -160,22 +186,33 @@
               </div>
             </div>
           </div>
-          <button title="Close (Esc)" type="button" class="mfp-close"></button>
+          <button
+            title="Close (Esc)"
+            type="button"
+            class="mfp-close"
+            @click="handleBackHome"
+          ></button>
         </div>
       </div>
     </div>
+    <alert-box></alert-box>
   </div>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { inject, reactive, ref } from "vue";
 import { createArrayNumber } from "../utils/createArrayNumber";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { validateAllCaseFromField } from "@/utils/validateForm";
+import AlertBox from "@/components/AlertBox.vue";
 export default {
+  components: { AlertBox },
   setup() {
     const store = useStore();
     const router = useRouter();
+    const isInvalidForm = ref(false);
+    const handleAlertBoxGlobal = inject("handleAlertBoxGlobal");
     const userRegister = reactive({
       name: "",
       email: "",
@@ -189,20 +226,86 @@ export default {
       address: "",
     });
 
+    const validateForm = reactive({
+      emailError: "",
+      phoneError: "",
+      nameError: "",
+      passwordError: "",
+      rePasswordError: "",
+    });
+
+    store.dispatch("auth/loadUserLoginFromLocalStorageAction");
+
+    function validatePhoneNumber() {
+      validateForm.phoneError = validateAllCaseFromField(
+        "phone",
+        userRegister.phone
+      );
+    }
+
+    function validateName() {
+      validateForm.nameError = validateAllCaseFromField(
+        "name",
+        userRegister.name
+      );
+    }
+
+    function validateEmail() {
+      validateForm.emailError = validateAllCaseFromField(
+        "email",
+        userRegister.email
+      );
+    }
+
+    function validatePassword() {
+      validateForm.passwordError = validateAllCaseFromField(
+        "password",
+        userRegister.password
+      );
+    }
+
+    function validateRePassword() {
+      validateForm.rePasswordError = validateAllCaseFromField(
+        "rePassword",
+        userRegister.rePassword
+      );
+    }
+
+    function checkFieldsValidate() {
+      isInvalidForm.value = false;
+      for (let message in validateForm) {
+        if (validateForm[message] != "") {
+          isInvalidForm.value = true;
+          break;
+        }
+      }
+    }
+
+    function handleBackHome() {
+      {
+        router.push("/");
+      }
+    }
+
     function handleSubmitForm() {
-      if (userRegister.password === userRegister.rePassword) {
-        const data = reactive({
-          name: userRegister.name,
-          email: userRegister.email,
-          password: userRegister.password,
-          phone: userRegister.phone,
-          birthday: `${userRegister.year}/${userRegister.month}/${userRegister.day}`,
-          gender: userRegister.gender === "Male",
-          address: userRegister.address,
-        });
-        store.dispatch("auth/signUpAction", { data, router });
+      checkFieldsValidate();
+      if (isInvalidForm.value) {
+        handleAlertBoxGlobal("Invalid data!");
       } else {
-        alert("Mật khẩu không khớp");
+        if (userRegister.password === userRegister.rePassword) {
+          const data = reactive({
+            name: userRegister.name,
+            email: userRegister.email,
+            password: userRegister.password,
+            phone: userRegister.phone,
+            birthday: `${userRegister.year}/${userRegister.month}/${userRegister.day}`,
+            gender: userRegister.gender === "Male",
+            address: userRegister.address,
+          });
+          store.dispatch("auth/signUpAction", { data, router });
+        } else {
+          handleAlertBoxGlobal("Password incorrect!");
+        }
       }
     }
 
@@ -215,6 +318,14 @@ export default {
       arrayDay,
       userRegister,
       handleSubmitForm,
+      handleBackHome,
+      validateForm,
+      validateEmail,
+      validatePhoneNumber,
+      validateName,
+      validatePassword,
+      validateRePassword,
+      isInvalidForm,
     };
   },
 };

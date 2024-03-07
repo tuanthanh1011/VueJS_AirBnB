@@ -380,21 +380,6 @@ header.fullwidth .container {
   display: none;
 }
 
-#header.cloned.unsticky {
-  opacity: 1;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translate(0, -100%) scale(1);
-  transition: 0.3s;
-}
-
-#header.cloned.sticky {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(0, 0) scale(1);
-  transition: 0.3s;
-}
-
 /*----------------------------------- */
 /* Footer
 ------------------------------------- */
@@ -2144,12 +2129,12 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
   height: 100%;
   width: 100%;
   display: block;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0.99) 20%,
+    rgba(255, 255, 255, 0.99) 0%,
     rgba(255, 255, 255, 0.7) 70%,
-    rgba(255, 255, 255, 0) 95%
-  );
+    rgba(255, 255, 255, 0.2) 100%
+  ); */
 }
 
 .main-search-container h2 {
@@ -8474,13 +8459,6 @@ a.send-message-to-owner.button {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.listing-nav-container.cloned.stick {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  background-color: #fff;
-}
-
 .listing-nav-container.cloned .listing-nav {
   border-bottom: none;
   margin: 0 auto;
@@ -9695,12 +9673,6 @@ section.fullwidth .blog-post {
   background-position: 50%;
 }
 
-.post-img:hover:before {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%);
-}
-
 /* Content Styling */
 .post-content {
   padding: 38px;
@@ -9947,6 +9919,8 @@ a.read-more:hover i {
   padding: 30px 35px;
   background: #f8f8f8;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .about-author p {
@@ -9972,7 +9946,7 @@ a.read-more:hover i {
 }
 
 .about-description {
-  margin: 2px 0 0 150px;
+  margin: 2px 0 0 50px;
 }
 
 /* ---------------------------------- */
@@ -14134,8 +14108,8 @@ span.like-icon {
 #titlebar {
   background-color: #f8f8f8;
   position: relative;
-  padding: 70px 0;
-  margin-bottom: 65px;
+  padding: 35px 0;
+  margin-bottom: 35px;
 }
 
 #titlebar.gradient {

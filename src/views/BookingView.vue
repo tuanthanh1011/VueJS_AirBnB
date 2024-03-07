@@ -32,12 +32,12 @@
           <div class="row">
             <div class="col-md-6">
               <label>Check in</label>
-              <input type="date" />
+              <input type="date" required v-model="inforTimeSlot.checkIn" />
             </div>
 
             <div class="col-md-6">
               <label>Check out</label>
-              <input type="date" />
+              <input type="date" required v-model="inforTimeSlot.checkOut" />
             </div>
           </div>
 
@@ -146,11 +146,12 @@
           </div>
           <!-- Payment Methods Accordion / End -->
 
-          <a
-            href="pages-booking-confirmation.html"
+          <button
+            @click="handleConfirmAndPay"
             class="button booking-confirmation-btn margin-top-40 margin-bottom-65"
-            >Confirm and Pay</a
           >
+            Confirm and Pay
+          </button>
         </div>
 
         <!-- Sidebar
@@ -162,9 +163,8 @@
               <img :src="roomDetail.image" alt="" />
 
               <div class="listing-item-content">
-                <div class="numerical-rating" data-rating="5.0"></div>
                 <h3>{{ roomDetail.name }}</h3>
-                <span
+                <span v-if="roomDetail.location"
                   >{{ roomDetail.location.province }},
                   {{ roomDetail.location.country }}</span
                 >
@@ -174,10 +174,24 @@
           <div class="boxed-widget opening-hours summary margin-top-0">
             <h3><i class="fa fa-calendar-check-o"></i> Booking Summary</h3>
             <ul>
-              <li>Date <span>10/20/2019</span></li>
-              <li>Hour <span>5:30 PM</span></li>
-              <li>Guests <span>2 Adults</span></li>
-              <li class="total-costs">Total Cost <span>$9.00</span></li>
+              <li>
+                Check in <span>{{ inforTimeSlot.checkIn }}</span>
+              </li>
+              <li>
+                Check out <span>{{ inforTimeSlot.checkOut }}</span>
+              </li>
+              <li class="total-costs">
+                Total Cost
+                <span
+                  >{{
+                    calculateDateDifference(
+                      inforTimeSlot.checkIn,
+                      inforTimeSlot.checkOut
+                    )
+                  }}
+                  VND</span
+                >
+              </li>
             </ul>
           </div>
           <!-- Booking Summary / End -->
@@ -185,96 +199,96 @@
       </div>
     </div>
     <!-- Container / End -->
-
-    <!-- Footer
-================================================== -->
-    <div id="footer">
-      <!-- Main -->
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 col-sm-6">
-            <img class="footer-logo" src="images/logo.png" alt="" />
-            <br /><br />
-            <p>
-              Morbi convallis bibendum urna ut viverra. Maecenas quis consequat
-              libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies
-              laoreet ullamcorper phasellus semper.
-            </p>
-          </div>
-
-          <div class="col-md-4 col-sm-6">
-            <h4>Helpful Links</h4>
-            <ul class="footer-links">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">My Account</a></li>
-              <li><a href="#">Add Listing</a></li>
-              <li><a href="#">Pricing</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-
-            <ul class="footer-links">
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Our Partners</a></li>
-              <li><a href="#">How It Works</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-
-          <div class="col-md-3 col-sm-12">
-            <h4>Contact Us</h4>
-            <div class="text-widget">
-              <span>12345 Little Lonsdale St, Melbourne</span> <br />
-              Phone: <span>(123) 123-456 </span><br />
-              E-Mail:<span> <a href="#">office@example.com</a> </span><br />
-            </div>
-
-            <ul class="social-icons margin-top-20">
-              <li>
-                <a class="facebook" href="#"><i class="icon-facebook"></i></a>
-              </li>
-              <li>
-                <a class="twitter" href="#"><i class="icon-twitter"></i></a>
-              </li>
-              <li>
-                <a class="gplus" href="#"><i class="icon-gplus"></i></a>
-              </li>
-              <li>
-                <a class="vimeo" href="#"><i class="icon-vimeo"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="copyrights">© 2021 Listeo. All Rights Reserved.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Footer / End -->
+    <alert-box></alert-box>
   </div>
 </template>
 
 <script>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import moment from "moment-timezone";
+import { computed, inject, reactive, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const store = useStore();
+    const price = ref(0);
+    const handleAlertBoxGlobal = inject("handleAlertBoxGlobal");
 
+    // Tạo reactive object cho thông tin thời gian đặt phòng
+    const inforTimeSlot = reactive({
+      checkIn: "",
+      checkOut: "",
+    });
+
+    // Dispatch action để lấy chi tiết phòng
     store.dispatch("room/getRoomDetailAction", route.params.roomId);
 
+    // Computed property cho chi tiết phòng
     const roomDetail = computed(() => store.state.room.roomDetail);
+
+    // Tính toán sự khác biệt ngày và tính giá tiền
+    function calculateDateDifference(date1, date2) {
+      if (date1 === "" || date2 === "") return 0;
+      const startDate = moment(date1);
+      const endDate = moment(date2);
+      const difference = endDate.diff(startDate, "days");
+      price.value = difference * roomDetail.value.price;
+      return price.value;
+    }
+
+    // So sánh ngày check-in và check-out
+    function compareDates(date1, date2) {
+      const checkIn = moment(date1);
+      const checkOut = moment(date2);
+
+      if (checkIn.isAfter(checkOut)) {
+        handleAlertBoxGlobal("Invalid check out");
+        return false;
+      }
+      return true;
+    }
+
+    // Watch sự thay đổi của biến inforTimeSlot
+    watch(inforTimeSlot, () => {
+      const resultCompare = compareDates(
+        inforTimeSlot.checkIn,
+        inforTimeSlot.checkOut
+      );
+      if (!resultCompare) {
+        inforTimeSlot.checkOut = "";
+      }
+    });
+
+    // Xử lý khi người dùng xác nhận và thanh toán
+    function handleConfirmAndPay() {
+      if (inforTimeSlot.checkIn === "" || inforTimeSlot.checkOut === "") {
+        handleAlertBoxGlobal("Please check in and check out date");
+      } else {
+        // Tạo data cập nhật vào bookings
+        const userLogin = store.state.auth.userLogin;
+        const data = {
+          checkIn: inforTimeSlot.checkIn,
+          checkOut: inforTimeSlot.checkOut,
+          user: userLogin,
+          room: roomDetail.value,
+          price: price.value,
+          date: moment().format("DD-MM-YYYY"),
+          status: "Pending",
+        };
+
+        store.dispatch("booking/bookingAction", data);
+
+        router.push("/booking-confirmation");
+      }
+    }
 
     return {
       roomDetail,
+      inforTimeSlot,
+      handleConfirmAndPay,
+      calculateDateDifference,
     };
   },
 };

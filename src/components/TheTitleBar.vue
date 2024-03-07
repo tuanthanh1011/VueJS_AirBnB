@@ -1,5 +1,5 @@
 <template>
-  <div id="titlebar" class="gradient">
+  <div id="titlebar" class="gradient" style="padding-top: 20px">
     <div class="container">
       <div class="row">
         <div class="col-md-12">

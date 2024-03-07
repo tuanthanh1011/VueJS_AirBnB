@@ -1,4 +1,4 @@
 import axiosAPI from ".";
-export const getLocationListAPI = (location) => {
-  return axiosAPI.get("url");
+export const getLocationListAPI = async () => {
+  return await axiosAPI.get("/locations");
 };

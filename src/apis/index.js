@@ -1,9 +1,9 @@
 import axios from "axios";
 import configs from "../configs/index.js";
+import store from "@/store/index.js";
 
 const axiosAPI = axios.create({
   baseURL: configs.baseUrl,
-  timeout: 1000,
   headers: { "X-Custom-Header": "foobar" },
 });
 
@@ -11,8 +11,10 @@ const axiosAPI = axios.create({
 // Nó nằm trung gian từ lúc gọi API tới lúc tới server
 axiosAPI.interceptors.request.use(
   function (config) {
-    // Cấu hình chuỗi token vào 1 file config
-    config.headers.tokenByClass = configs.tokenByClass;
+    store.commit("setLoading", true); // Bắt đầu hiệu ứng loading
+
+    // config.headers.tokenByClass = configs.tokenByClass;
+
     return config;
   },
   function (error) {
@@ -23,9 +25,11 @@ axiosAPI.interceptors.request.use(
 // Set up để chỉ lấy về data trong response
 axiosAPI.interceptors.response.use(
   function (response) {
+    store.commit("setLoading", false); // Kết thúc hiệu ứng loading
     return response.data;
   },
   function (error) {
+    store.commit("setLoading", false); // Kết thúc hiệu ứng loading
     return Promise.reject(error);
   }
 );

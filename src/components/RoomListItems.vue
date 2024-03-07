@@ -1,11 +1,14 @@
 <template>
   <div class="col-lg-12 col-md-12">
-    <div class="listing-item-container list-layout" data-marker-id="6">
+    <div
+      class="listing-item-container list-layout"
+      data-marker-id="6"
+      style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2)"
+    >
       <a @click="getRoomDetail" class="listing-item">
         <!-- Image -->
         <div class="listing-item-image">
           <img :src="room.image" alt="" />
-          <span class="tag">Events</span>
         </div>
 
         <!-- Content -->
@@ -18,7 +21,7 @@
             </div>
           </div>
           <span class="like-icon"> </span>
-          <div class="listing-item-details">price: {{ room.price }}</div>
+          <div class="listing-item-details">price: {{ room.price }} VND</div>
         </div>
       </a>
     </div>
@@ -47,6 +50,7 @@ export default {
       });
     }
 
+    console.log(room.value);
     return {
       getRoomDetail,
     };

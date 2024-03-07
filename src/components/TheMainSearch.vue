@@ -35,6 +35,8 @@ export default {
     const store = useStore();
     const router = useRouter();
 
+    store.dispatch("location/getAllLocationAction");
+
     const handleClickLocation = (location) => {
       router.push(`/rooms/${location.id}`);
     };

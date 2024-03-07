@@ -10,7 +10,6 @@
           <div class="small-dialog-header">
             <h3>Sign In</h3>
           </div>
-
           <!--Tabs -->
           <div class="sign-in-form style-1">
             <div class="tabs-container alt">
@@ -50,9 +49,6 @@
                       <router-link to="/sign-up">Sign up</router-link>
                     </span>
                     <br />
-                    <span class="lost_password">
-                      <a href="#">Lost Your Password?</a>
-                    </span>
                   </p>
 
                   <div class="form-row">
@@ -62,46 +58,64 @@
                       name="login"
                       value="Login"
                     />
-                    <div class="checkboxes margin-top-10">
-                      <input id="remember-me" type="checkbox" name="check" />
-                      <label for="remember-me">Remember Me</label>
-                    </div>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          <button title="Close (Esc)" type="button" class="mfp-close"></button>
+          <button
+            title="Close (Esc)"
+            type="button"
+            class="mfp-close"
+            @click="handleBackHome"
+          ></button>
         </div>
       </div>
     </div>
+    <alert-box></alert-box>
   </div>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { inject, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import AlertBox from "@/components/AlertBox.vue";
 export default {
+  components: { AlertBox },
   setup() {
     const store = useStore();
     const router = useRouter();
+    const handleAlertBoxGlobal = inject("handleAlertBoxGlobal");
+
+    store.dispatch("auth/loadUserLoginFromLocalStorageAction");
 
     const userLogin = reactive({
       email: "",
       password: "",
     });
 
-    function handleSubmitLogin() {
-      store.dispatch("auth/signInAction", {
+    function handleBackHome() {
+      {
+        router.push("/");
+      }
+    }
+
+    async function handleSubmitLogin() {
+      const result = await store.dispatch("auth/signInAction", {
         data: userLogin,
         router,
       });
+      console.log(result);
+      if (!result) {
+        handleAlertBoxGlobal("Accounts or passwords are incorrect!!");
+      }
     }
 
     return {
       userLogin,
       handleSubmitLogin,
+      handleBackHome,
     };
   },
 };
