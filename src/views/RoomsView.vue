@@ -42,6 +42,11 @@
 
         <room-list></room-list>
       </div>
+      <div class="clearfix"></div>
+
+      <div class="copyrights margin-top-0">
+        © 2021 Listeo. All Rights Reserved.
+      </div>
     </div>
     <div class="fs-inner-container map-fixed">
       <!-- Map -->
