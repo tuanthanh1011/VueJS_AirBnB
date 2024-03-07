@@ -47,6 +47,7 @@
             id="contactform"
             autocomplete="on"
           >
+            <h2>TEST</h2>
             <div class="row">
               <div class="col-md-6">
                 <div>
@@ -59,7 +60,6 @@
                   />
                 </div>
               </div>
-
               <div class="col-md-6">
                 <div>
                   <input
@@ -96,12 +96,7 @@
               ></textarea>
             </div>
 
-            <input
-              type="submit"
-              class="submit button"
-              id="submit"
-              value="Submit Message"
-            />
+            <input class="submit button" id="submit" value="Submit Message" />
           </form>
         </section>
       </div>
@@ -114,5 +109,4 @@
 export default {};
 </script>
 
-<style>
-</style>
+<style></style>

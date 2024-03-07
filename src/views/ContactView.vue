@@ -41,6 +41,9 @@
           <div id="contact-message"></div>
 
           <form method="">
+            <div>
+              <p style="color: red">Real -time chat feature is being built</p>
+            </div>
             <div class="row">
               <div class="col-md-6">
                 <div>
